@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/ClionProjects/Advanced_C++_Programming/HW01_New_in_C++/HW01_Lambda_func/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe   -g -o CMakeFiles\\Lambda_function.dir\\Lambda_function.cpp.obj -c D:\\ClionProjects\\Advanced_C++_Programming\\HW01_New_in_C++\\HW01_Lambda_func\\Lambda_function.cpp",
+  "file": "D:/ClionProjects/Advanced_C++_Programming/HW01_New_in_C++/HW01_Lambda_func/Lambda_function.cpp",
+  "output": "CMakeFiles/Lambda_function.dir/Lambda_function.cpp.obj"
+}
+]
