@@ -1,38 +1,33 @@
 #include <iostream>
-#include <vector>
-#include <iterator>
-
+#include <variant>
+#include <windows.h>
+#include <string>
 
 int main() {
-    int size;
-    int numbers;
-    std::cin >> size;
-    std::vector<int> vec;
-    for (int i = 0; i < size; i++) {
-        std::cin >> numbers;
-        vec.push_back(numbers);
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    std::variant<int, std::string> in;
+
+    std::cout << "Write (int or string): ";
+
+    std::string str;
+    std::cin >> str;
+
+    try {
+        in = std::stoi(str);
     }
-    for (auto &p: vec) {
-        if (p % 2 != 0)
-            p *= 3;
+    catch (std::invalid_argument) {
+        in = str;
     }
-    std::copy(std::begin(vec), std::end(vec), std::ostream_iterator<int>(std::cout, " "));
+
+    // Вывести значение, независимо от типа
+    if (std::holds_alternative<int>(in)) {
+        std::cout << "You are written <int>: " << std::get<int>(in) << std::endl;
+    }
+    else {
+        std::cout << "You are written <string>: " << std::get<std::string>(in) << std::endl;
+    }
+
     return 0;
 }
-
-/*
-#include <iostream>
-#include <iterator>
-
-int main(){
-    int a[] = { 20, 1, 7, 3, 5, 2, 4, 6, 11 };
-
-    for(auto& x : a){
-        if((x % 2) == 0)
-            x *= x;
-        else
-            x *= 2;
-    }
-    std::copy(std::begin(a), std::end(a), std::ostream_iterator<int>(std::cout, " "));
-    return 0;
-}*/
