@@ -7,6 +7,8 @@ private:
     int size_;
     int capacity;
 public:
+    smart_array(const smart_array&) = delete;
+    smart_array& operator=(const smart_array&) = delete;
     explicit smart_array(int initcap, int initsize) : size_(0),  capacity(initcap) {
         if (initsize > initcap) {
             throw std::invalid_argument("Initial size cannot be greater than capacity");

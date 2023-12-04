@@ -3,10 +3,20 @@
 
 class smart_array {
 private:
-    int *data;
+    int *data{};
     int size_;
     int capacity;
 public:
+        smart_array& operator=(const smart_array& other) {
+            if (this == &other) {
+                    throw std::invalid_argument("Cannot assign to self");
+                }
+            return *this;
+        }
+        smart_array(const smart_array& other) {
+            size_ = other.size_;
+            capacity = other.capacity;
+        }
     explicit smart_array(int initcap, int initsize) : size_(0),  capacity(initcap) {
         if (initsize > initcap) {
             throw std::invalid_argument("Initial size cannot be greater than capacity");
@@ -73,6 +83,7 @@ int main() {
         arr.display_arr();
         std::cout << arr.get_element(1) << std::endl;
 
+        arr = arr;
         smart_array arr2(capacity, initialSize);
         arr2.add_element(17);
         arr2.add_element(56);
