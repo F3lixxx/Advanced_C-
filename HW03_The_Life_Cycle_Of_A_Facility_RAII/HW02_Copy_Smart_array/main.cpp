@@ -3,7 +3,7 @@
 
 class smart_array {
 private:
-    int *data{};
+    int *data;
     int size_;
     int capacity;
 public:
@@ -11,11 +11,20 @@ public:
             if (this == &other) {
                     throw std::invalid_argument("Cannot assign to self");
                 }
+             else {
+                delete[] data;
+                size_ = other.size_;
+                capacity = other.capacity;
+                data = new int[capacity];
+                for (int i = 0; i < size_; ++i) {
+                    data[i] = other.data[i];
+                }
+            }
             return *this;
         }
-        smart_array(const smart_array& other) {
-            size_ = other.size_;
-            capacity = other.capacity;
+        smart_array(const smart_array& another) {
+            size_ = another.size_;
+            capacity = another.capacity;
         }
     explicit smart_array(int initcap, int initsize) : size_(0),  capacity(initcap) {
         if (initsize > initcap) {
@@ -83,13 +92,12 @@ int main() {
         arr.display_arr();
         std::cout << arr.get_element(1) << std::endl;
 
-        arr = arr;
-        smart_array arr2(capacity, initialSize);
-        arr2.add_element(17);
-        arr2.add_element(56);
-        arr = arr2;
-        arr2.display_arr();
-        std::cout << arr2.get_element(1) << std::endl;
+        smart_array new_array(capacity, initialSize);
+        new_array = arr;
+        new_array.add_element(17);
+        new_array.add_element(56);
+        new_array.display_arr();
+        std::cout << new_array.get_element(6) << std::endl;
 
     } catch (const std::exception &ex) {
         std::cout << ex.what() << std::endl;

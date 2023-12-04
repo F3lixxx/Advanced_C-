@@ -13,7 +13,7 @@ public:
         if (initsize > initcap) {
             throw std::invalid_argument("Initial size cannot be greater than capacity");
         }
-            data = new int[capacity];
+        data = new int[capacity];
     }
 
     void add_element(int value) {
