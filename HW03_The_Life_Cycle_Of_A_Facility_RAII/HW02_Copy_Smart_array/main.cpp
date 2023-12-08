@@ -3,35 +3,49 @@
 
 class smart_array {
 private:
-    int *data{};
+    int* data;
     int size_;
     int capacity;
 public:
-        smart_array& operator=(const smart_array& other) {
-            if (this == &other) {
-                    throw std::invalid_argument("Cannot assign to self");
-                }
-            return *this;
+
+    smart_array(const smart_array& another) {
+        size_ = another.size_;
+        capacity = another.capacity;
+        data = new int[capacity * 2];
+        for (int j = 0; j < size_; ++j) {
+            data[j] = another.data[j];
         }
-        smart_array(const smart_array& other) {
+    }
+
+    smart_array& operator=(const smart_array& other) {
+        if (this != &other) {
+            delete[] data;
             size_ = other.size_;
             capacity = other.capacity;
+            data = new int[capacity];
+            for (int i = 0; i < size_; ++i) {
+                data[i] = other.data[i];
+            }
         }
-    explicit smart_array(int initcap, int initsize) : size_(0),  capacity(initcap) {
-        if (initsize > initcap) {
-            throw std::invalid_argument("Initial size cannot be greater than capacity");
-        }
+        return *this;
+    }
+
+    explicit smart_array( int initsize) : size_(0), capacity(initsize){
+
         data = new int[capacity];
+
+
     }
 
     void add_element(int value) {
         if (size_ < capacity) {
             data[size_] = value;
             size_++;
-        } else {
+        }
+        else {
             // Если массив полон, увеличиваем его емкость и копируем элементы
             capacity *= 2;
-            int *newData = new int[capacity];
+            int* newData = new int[capacity];
             for (int i = 0; i < size_; ++i) {
                 newData[i] = data[i];
             }
@@ -47,6 +61,7 @@ public:
             std::cout << data[i] << " ";
         }
     }
+
     int get_element(int k) const {
         std::cout << "\nyou are in get_element" << std::endl;
 
@@ -63,17 +78,15 @@ public:
 };
 
 int main() {
-    int capacity = 0;
+
     int initialSize = 0;
 
-    std::cout << "Enter capacity: ";
-    std::cin >> capacity;
 
     std::cout << "Enter initial size: ";
     std::cin >> initialSize;
 
     try {
-        smart_array arr(capacity, initialSize);
+        smart_array arr(initialSize);
         arr.add_element(1);
         arr.add_element(45);
         arr.add_element(155);
@@ -83,15 +96,14 @@ int main() {
         arr.display_arr();
         std::cout << arr.get_element(1) << std::endl;
 
-        arr = arr;
-        smart_array arr2(capacity, initialSize);
-        arr2.add_element(17);
-        arr2.add_element(56);
-        arr = arr2;
-        arr2.display_arr();
-        std::cout << arr2.get_element(1) << std::endl;
-
-    } catch (const std::exception &ex) {
+        smart_array new_array(initialSize);
+        new_array = arr;
+        new_array.add_element(17);
+        new_array.add_element(56);
+        new_array.display_arr();
+        std::cout << new_array.get_element(1) << std::endl;
+    }
+    catch (const std::exception& ex) {
         std::cout << ex.what() << std::endl;
     }
     return 0;
