@@ -16,9 +16,8 @@ public:
     {};
     ~tridiagonal_matrix() { std::cout << "\ndestructor called\n"; }
 
-    std::unique_ptr<double> clone(double t_m){
-        std::unique_ptr<double> p{ new double { t_m }};
-        return p;
+    std::unique_ptr<tridiagonal_matrix> clone(){
+        return std::make_unique<tridiagonal_matrix>(*this);
     }
 };
 
@@ -34,8 +33,7 @@ int main()
         middle
     );
 
-    auto matrix_clone = matrix->clone(30.0);
-    std::cout<< *matrix_clone;
+    auto matrix_clone = matrix->clone();
 
     return 0;
 }
