@@ -1,0 +1,3 @@
+D:/ClionProjects/Advanced_CPP_Programming/INI-files_parser/build/CMakeFiles/INI_files_parser.dir
+D:/ClionProjects/Advanced_CPP_Programming/INI-files_parser/build/CMakeFiles/ALL_BUILD.dir
+D:/ClionProjects/Advanced_CPP_Programming/INI-files_parser/build/CMakeFiles/ZERO_CHECK.dir

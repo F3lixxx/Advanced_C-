@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\ClionProjects\Advanced_CPP_Programming\INI-files_parser\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\ClionProjects\Advanced_CPP_Programming\INI-files_parser\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E7E6E566-EEB6-347D-916A-A6163C577719}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
